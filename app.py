@@ -6,7 +6,7 @@ from datetime import timedelta
 
 
 def create_app():
-    app = Flask(__name__, template_folder=r"D:\Complete_Selenium\simple_app_v2\templates")
+    app = Flask(__name__, template_folder=r"templates")
     app.secret_key = "supersecretkey"
     app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///site.db"
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
