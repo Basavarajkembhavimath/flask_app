@@ -7,13 +7,16 @@ from functools import wraps
 
 web = Blueprint("web", __name__)
 
+# Global set to track active users
+active_users = set()
+
 # Decorator to protect routes
 def login_required(f):
     from functools import wraps
     @wraps(f)
     def decorated_function(*args, **kwargs):
         if not session.get("logged_in"):
-            return redirect(url_for("web.register", next=request.path))
+            return redirect(url_for("web.login", next=request.path))
         return f(*args, **kwargs)
     return decorated_function
 
@@ -49,35 +52,24 @@ def register():
         return redirect(url_for("web.login"))
     return render_template("register.html")
 
+@web.route("/admin")
+def admin_dashboard():
+    # Only allow if current user is 'admin'
+    if not session.get("is_admin"):
+        return "Access denied"
 
+    # Active users (from global set)
+    active = list(active_users)
 
-# @web.route("/register", methods=["GET", "POST"])
-# def register():
-#     if request.method == "POST":
-#         username = request.form["username"]
-#         password = request.form["password"]
-
-#         # Check if user already exists
-#         existing_user = User.query.filter_by(username=username).first()
-#         if existing_user:
-#             if request.args.get("format") == "json":
-#                 return jsonify({"error": "Username already taken"}), 400
-#             return "Username already taken!"
-
-#         # Create new user
-#         new_user = User(username=username)
-#         new_user.set_password(password)
-#         db.session.add(new_user)
-#         db.session.commit()
-
-#         if request.args.get("format") == "json":
-#             return jsonify({"message": "User registered successfully"}), 201
-#         return redirect(url_for("web.login"))
-
-#     # GET request
-#     if request.args.get("format") == "json":
-#         return jsonify({"info": "Send POST request with username and password"})
-#     return render_template("register.html")
+    # All registered users(from db)
+    all_users = User.query.all()
+    return render_template(
+        "admin.html",
+        active_users = active,
+        active_count = len(active),
+        all_users = all_users,
+        total_count = len(all_users) 
+        )
 
 # Login page
 @web.route("/login", methods=["GET", "POST"])
@@ -92,27 +84,38 @@ def login():
             session.permanent = False # ensures session dies when browser closes
             session["logged_in"] = True # Mark user as logged in
             session["username"] = user.username 
-            # Redirect to originally requested page is available
-            #next_url = session.pop("next_url", None)
-            next_url = request.form.get("next") or request.args.get("next")
-            # if session.get("logged_in"):
-            #     next_url =  request.args.get("next")
-            if next_url:
-            #     return redirect(next_url or url_for("web.home"), code=303)
-            # return redirect(url_for("web.home"), code=303)
-                return render_template("login.html", next=request.args.get("next"))
-            return render_template("login.html", next=request.args.get("next"))
+            session["is_admin"] = (user.username == "admin") # flag admin
+
+            # Track active user
+            active_users.add(user.username)
+
+            next_url =  request.args.get("next")
+            if next_url and next_url.startswith("/"):
+                return redirect(next_url, code=303)
+            return redirect(url_for("web.home"), code=303)
+            
         else:
             return "Invalid credentials, try again!"
 
     return render_template("login.html", next=request.args.get("next"))
 
+# # Logout
+# @web.route("/logout")
+# def logout():
+#     session.pop("logged_in", None)
+#     session.clear()
+#     return redirect(url_for("web.home"))
+
 # Logout
 @web.route("/logout")
 def logout():
+    if session.get("username") in active_users:
+        active_users.remove(session["username"])
     session.pop("logged_in", None)
+    session.pop("username", None)
     session.clear()
     return redirect(url_for("web.home"))
+
 
 
 @web.route("/about")

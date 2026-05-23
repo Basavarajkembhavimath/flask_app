@@ -1,10 +1,9 @@
 from flask import Flask
-from models import db
+from models import db, User
 from api import api
 from web import web # my existing html routes
 from datetime import timedelta
 import os
-
 
 def create_app():
     #app = Flask(__name__, template_folder=r"templates")
@@ -23,6 +22,14 @@ def create_app():
 
     with app.app_context():
         db.create_all()
+
+         # ✅ Create admin user
+        if not User.query.filter_by(username="admin").first():
+            admin_user = User(username="admin")
+            admin_user.set_password("secret")  # replace with strong password or env var
+            db.session.add(admin_user)
+            db.session.commit()
+            print("Admin user created successfully!")
 
     return app
 
