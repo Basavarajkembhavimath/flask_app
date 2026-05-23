@@ -3,10 +3,12 @@ from models import db
 from api import api
 from web import web # my existing html routes
 from datetime import timedelta
+import os
 
 
 def create_app():
-    app = Flask(__name__, template_folder=r"templates")
+    #app = Flask(__name__, template_folder=r"templates")
+    app = Flask(__name__, template_folder=os.path.join(os.path.dirname(__file__), "templates"))
     app.secret_key = "supersecretkey"
     app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///site.db"
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
