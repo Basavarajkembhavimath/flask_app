@@ -98,8 +98,10 @@ def login():
             # if session.get("logged_in"):
             #     next_url =  request.args.get("next")
             if next_url:
-                return redirect(next_url or url_for("web.home"), code=303)
-            return redirect(url_for("web.home"), code=303)
+            #     return redirect(next_url or url_for("web.home"), code=303)
+            # return redirect(url_for("web.home"), code=303)
+                return render_template("login.html", next=request.args.get("next"))
+            return render_template("login.html", next=request.args.get("next"))
         else:
             return "Invalid credentials, try again!"
 
