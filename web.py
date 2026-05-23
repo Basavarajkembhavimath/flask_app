@@ -22,7 +22,7 @@ def login_required(f):
 @web.route("/")
 def home():
     
-    return render_template("index.html", username="Basavaraj")
+    return render_template("index.html", username=session.get("username"))
 
 # User Home page
 @web.route("/user/<name>")
