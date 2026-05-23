@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>About Us</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(120deg, #84fab0, #8fd3f4);
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+        header {
+            background: linear-gradient(to right, #ff6a00, #ee0979);
+            color: white;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        header h1 {
+            margin: 0 auto; /* center title while button stays left */
+            font-size: 2.5em;
+        }
+        /* Back button style */
+        .back-btn {
+            background: #ff6f61;
+            color: white;
+            text-decoration: none;
+            padding: 14px 30px;
+            border-radius: 30px; /* rounded pill shape */
+            font-size: 18px;
+            font-weight: bold;
+            border: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+        }
+        .back-btn:hover {
+            background: #ff3b2e;
+        }
+        main {
+            padding: 60px 40px;
+            text-align: center;
+        }
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            margin: 20px auto;
+            max-width: 600px;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+        }
+        footer {
+            background: #ee0979;
+            color: white;
+            text-align: center;
+            padding: 15px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <!-- Back button on top-left -->
+        <button class="back-btn" onclick="history.back()">← Back</button>
+        <h1>About This App</h1>
+    </header>
+
+    <main>
+        <div class="card">
+            <h2>Who We Are</h2>
+            <p>This Flask application is a simple project designed to demonstrate how Python can power dynamic web pages.</p>
+            <p>It’s lightweight, flexible, and perfect for learning or building small web projects.</p>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 My Flask App</p>
+    </footer>
+</body>
+</html>

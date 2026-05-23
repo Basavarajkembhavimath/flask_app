@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Resume</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #d4fc79, #96e6a1);
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+        header {
+            background: linear-gradient(to right, #11998e, #38ef7d);
+            color: white;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        header h1 {
+            margin: 0 auto; /* keeps title centered while button stays left */
+            font-size: 2.5em;
+        }
+        /* Back button style */
+        .back-btn {
+            background: #ff6f61;
+            color: white;
+            text-decoration: none;
+            padding: 14px 30px;
+            border-radius: 30px; /* rounded pill shape */
+            font-size: 18px;
+            font-weight: bold;
+            border: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+        }
+        .back-btn:hover {
+            background: #ff3b2e;
+        }
+        main {
+            padding: 40px;
+            max-width: 800px;
+            margin: auto;
+        }
+        .resume-section {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+        }
+        h2 {
+            color: #11998e;
+        }
+        a.download-btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 25px;
+            background: linear-gradient(to right, #11998e, #38ef7d);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+        a.download-btn:hover {
+            opacity: 0.9;
+        }
+        footer {
+            background: #11998e;
+            color: white;
+            text-align: center;
+            padding: 15px;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <!-- Back button on top-left -->
+        <button class="back-btn" onclick="history.back()">← Back</button>
+        <h1>My Resume</h1>
+    </header>
+
+    <main>
+        <!-- Removed old "Return to Home" link since Back button is now at top -->
+        
+        <div class="resume-section">
+            <h2>Summary</h2>
+            <p>Senior Software Engineer with 4.5+ years of experience in Python-driven test automation, API validation,
+                and CI/CD integration. Skilled in designing scalable test frameworks, debugging complex systems, and
+                ensuring reliability through unit, regression, and system testing. Strong expertise in pytest, REST API testing
+                with Postman, and database validation using SQL and in-memory databases. Adept at integrating automated
+                pipelines with Jenkins, GitHub Actions, and GitLab, improving release quality and coverage reporting. Proven
+                ability to collaborate in Agile environments, align testing strategies with SDLC/V-Model practices, and drive
+                continuous improvement by reducing manual effort through automation.
+            </p>
+        </div>
+
+        <div class="resume-section">
+            <h2>Skills</h2>
+            <ul>
+                <li>Python, Python Automation, Flask, REST APIs, Postman</li>
+                <li>Annotation, Data Validation, Machine Learning, Model development, ML Model Validation with Evaluation Metrics</li>
+                <li>Pandas, Numpy, MatplotLib, Sklearn, Feature Engineering, Data Analysis</li>
+                <li>Selenium, Pytest, Google Test, API & Integration Testing</li>
+                <li>SQL & Databases, Requests, Web Scraping, Test Automation</li>
+                <li>AWS S3 Bucket and EC2 Server, Github Actions, GitLab CI, Jenkins, Pipeline Setup</li>
+                <li>Comfortable working in Windows and Linux</li>
+            </ul>
+        </div>
+
+        <div class="resume-section">
+            <h2>Experience</h2>
+            <p><strong>Senior Software Engineer</strong> – KPIT Technology – Feb 2023 – Dec 2025</p>
+            <p><strong>Senior Software Engineer</strong> – Path Partner Technology – Mar 2021 – Dec 2023</p>
+            <p>Worked in multiple roles including Test Engineer, Engineer, and 
+               Senior Engineer, handling diverse responsibilities from quality assurance and 
+               development to project leadership and mentoring.</p>
+        </div>
+
+        <div class="resume-section">
+            <h2>Education</h2>
+            <p>Master of Computer Applications (MCA) – Mysore University</p>
+        </div>
+
+        <!-- Download button -->
+        <a href="{{ url_for('static', filename='Basavaraj_hiremath.pdf') }}" class="download-btn" download>
+            Download Resume (PDF)
+        </a>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 My Portfolio</p>
+    </footer>
+</body>
+</html>

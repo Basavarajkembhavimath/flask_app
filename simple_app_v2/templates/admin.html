@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Dashboard</title>
+    <style>
+        body {
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #74ebd5 0%, #9face6 100%);
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #4a47a3;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        h1 {
+            margin: 0;
+            font-size: 2.5em;
+        }
+        .container {
+            margin: 40px auto;
+            width: 85%;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+            padding: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 25px;
+        }
+        th, td {
+            padding: 12px 15px;
+            text-align: center;
+        }
+        th {
+            background-color: #4a47a3;
+            color: white;
+            font-size: 1.1em;
+        }
+        tr:nth-child(even) {
+            background-color: #f3f3f3;
+        }
+        tr:hover {
+            background-color: #e0e0ff;
+        }
+        .count-box {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 15px;
+        }
+        h2 {
+            margin-top: 40px;
+            color: #4a47a3;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Admin Dashboard</h1>
+        <p>Monitor Active and Registered Users</p>
+    </header>
+    <div class="container">
+        <!-- Active Users Table -->
+        <div class="count-box">
+            Active Users: {{ active_count }}
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Active User ID</th>
+                    <th>Username</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for user in active_users %}
+                <tr>
+                    <td>{{ loop.index }}</td>
+                    <td>{{ user }}</td>
+                </tr>
+                {% endfor %}
+                {% if active_users|length == 0 %}
+                <tr><td colspan="2">No active users currently</td></tr>
+                {% endif %}
+            </tbody>
+        </table>
+
+        <!-- Registered Users Table -->
+        <h2>All Registered Users</h2>
+        <div class="count-box">
+            Total Registered Users: {{ total_count }}
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>User ID</th>
+                    <th>Username</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for u in all_users %}
+                <tr>
+                    <td>{{ u.id }}</td>
+                    <td>{{ u.username }}</td>
+                </tr>
+                {% endfor %}
+                {% if all_users|length == 0 %}
+                <tr><td colspan="2">No registered users found</td></tr>
+                {% endif %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Projects</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #89f7fe, #66a6ff);
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+        header {
+            background: linear-gradient(to right, #ff6a00, #ee0979);
+            color: white;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        header h1 {
+            margin: 0 auto; /* keeps title centered while button stays left */
+            font-size: 3em;
+        }
+        header p {
+            margin: 0 auto;
+        }
+        /* Back button style */
+        .back-btn {
+            background: #ff6f61;
+            color: white;
+            text-decoration: none;
+            padding: 14px 30px;
+            border-radius: 30px; /* rounded pill shape */
+            font-size: 18px;
+            font-weight: bold;
+            border: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+        }
+        .back-btn:hover {
+            background: #ff3b2e;
+        }
+        main {
+            padding: 40px;
+            max-width: 1000px;
+            margin: auto;
+        }
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+        .project-card {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+            transition: transform 0.2s ease;
+            text-align: center;
+        }
+        .project-card:hover {
+            transform: scale(1.05);
+        }
+        .project-card img {
+            max-width: 100%;
+            border-radius: 8px;
+        }
+        .project-card h2 {
+            color: #ee0979;
+            margin: 15px 0 10px;
+        }
+        .project-card p {
+            font-size: 1em;
+            line-height: 1.5;
+        }
+        .view-btn {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 10px 20px;
+            background: linear-gradient(to right, #ff6a00, #ee0979);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+        .view-btn:hover {
+            opacity: 0.9;
+        }
+        footer {
+            background: #ee0979;
+            color: white;
+            text-align: center;
+            padding: 15px;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <!-- Back button on top-left -->
+        <button class="back-btn" onclick="history.back()">← Back</button>
+        <div style="flex:1; text-align:center;">
+            <h1>My Projects</h1>
+            <p>A showcase of my work and creativity</p>
+        </div>
+    </header>
+
+    <main>
+        <div class="project-grid">
+            
+            <!-- Example project cards -->
+            <div class="project-card">
+                <img src="{{ url_for('static', filename='project1.jpg') }}" alt="Project 1">
+                <h2>Flask Contact App</h2>
+                <p>A simple web application built with Flask to handle contact forms and submissions.</p>
+                <a href="#" class="view-btn">View Project</a>
+            </div>
+
+            <div class="project-card">
+                <img src="{{ url_for('static', filename='project2.jpg') }}" alt="Project 2">
+                <h2>Portfolio Website</h2>
+                <p>A personal portfolio site showcasing my resume, projects, and blog posts.</p>
+                <a href="#" class="view-btn">View Project</a>
+            </div>
+
+            <div class="project-card">
+                <img src="{{ url_for('static', filename='project3.jpg') }}" alt="Project 3">
+                <h2>Data Dashboard</h2>
+                <p>An interactive dashboard displaying analytics and charts using Flask and Chart.js.</p>
+                <a href="#" class="view-btn">View Project</a>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 My Portfolio</p>
+    </footer>
+</body>
+</html>

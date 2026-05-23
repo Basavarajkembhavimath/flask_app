@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Feedbacks</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f4f9;
+            padding: 20px;
+            margin: 0;
+        }
+        header {
+            background: #2575fc;
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+        }
+        header a.home-btn {
+            background: white;
+            color: #2575fc;
+            text-decoration: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        header a.home-btn:hover {
+            background: #f1f1f1;
+        }
+        h1 {
+            color: #333;
+            margin-top: 20px;
+        }
+        .feedback {
+            background: white;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .feedback strong {
+            color: #dd2476;
+        }
+    </style>
+</head>
+<body>
+    <!-- Top bar with Home button -->
+    <header>
+        <a href="/" class="home-btn">Home</a>
+    </header>
+
+    <h1>All Feedbacks</h1>
+
+    
+    {% for fb in feedbacks %}
+        <div class="feedback">
+            <p><strong>{{ fb.name }}</strong> ({{ fb.email }})</p>
+            <p>{{ fb.message }}</p>
+            <small>Submitted on: {{ fb.created_at.strftime("%Y-%m-%d %H:%M:%S") }}</small>      
+        </div>
+    {% else %}
+        <p>No feedbacks yet.</p>
+    {% endfor %}
+
+<div id="feedbacks"></div>
+
+</body>
+</html>

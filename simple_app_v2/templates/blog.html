@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Blog</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #ff9a9e, #fecfef);
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+        header {
+            background: linear-gradient(to right, #00b09b, #96c93d);
+            color: white;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        header h1 {
+            margin: 0 auto; /* keeps title centered while button stays left */
+            font-size: 3em;
+        }
+        header p {
+            margin: 0 auto;
+        }
+        /* Back button style */
+        .back-btn {
+            background: #ff6f61;
+            color: white;
+            text-decoration: none;
+            padding: 14px 30px;
+            border-radius: 30px; /* rounded pill shape */
+            font-size: 18px;
+            font-weight: bold;
+            border: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+        }
+        .back-btn:hover {
+            background: #ff3b2e;
+        }
+        main {
+            padding: 40px;
+            max-width: 900px;
+            margin: auto;
+        }
+        .post {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+            transition: transform 0.2s ease;
+        }
+        .post:hover {
+            transform: scale(1.02);
+        }
+        .post h2 {
+            color: #00b09b;
+            margin-top: 0;
+        }
+        .post p {
+            font-size: 1.1em;
+            line-height: 1.6;
+        }
+        .read-more {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 10px 20px;
+            background: linear-gradient(to right, #00b09b, #96c93d);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+        .read-more:hover {
+            opacity: 0.9;
+        }
+        footer {
+            background: #00b09b;
+            color: white;
+            text-align: center;
+            padding: 15px;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <!-- Back button on top-left -->
+        <button class="back-btn" onclick="history.back()">← Back</button>
+        <div style="flex:1; text-align:center;">
+            <h1>My Blog</h1>
+            <p>Sharing thoughts, ideas, and experiences</p>
+        </div>
+    </header>
+
+    <main>
+        <!-- Example blog posts -->
+        <div class="post">
+            <h2>My First Blog Post</h2>
+            <p>This is a demo post where I share my journey of learning Flask and building my portfolio website. It’s been an exciting experience combining Python with web development!</p>
+            <a href="#" class="read-more">Read More</a>
+        </div>
+
+        <div class="post">
+            <h2>Exploring Web Development</h2>
+            <p>Web development opens up endless possibilities. From simple apps to complex platforms, Flask provides a lightweight yet powerful framework to bring ideas to life.</p>
+            <a href="#" class="read-more">Read More</a>
+        </div>
+
+        <div class="post">
+            <h2>Future Projects</h2>
+            <p>I’m planning to expand my portfolio with more projects, including dashboards, APIs, and interactive applications. Stay tuned for updates!</p>
+            <a href="#" class="read-more">Read More</a>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 My Portfolio Blog</p>
+    </footer>
+</body>
+</html>
