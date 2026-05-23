@@ -109,6 +109,7 @@ def login():
 @web.route("/logout")
 def logout():
     session.pop("logged_in", None)
+    session.clear()
     return redirect(url_for("web.home"))
 
 
