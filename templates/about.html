@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Us</title>
     <style>
         body {
@@ -62,6 +63,14 @@
             bottom: 0;
             width: 100%;
         }
+
+        .container { display: flex; flex-wrap: wrap; padding: 1em; }
+        .box { flex: 1 1 300px; margin: 1em; padding: 1em; background: #f4f4f4; }
+        @media (max-width: 600px) {
+        header { font-size: 1.2em; }
+        .box { flex: 1 1 100%; }
+        }
+
     </style>
 </head>
 <body>
