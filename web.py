@@ -13,7 +13,7 @@ def login_required(f):
     @wraps(f)
     def decorated_function(*args, **kwargs):
         if not session.get("logged_in"):
-            return redirect(url_for("web.login", next=request.path))
+            return redirect(url_for("web.register", next=request.path))
         return f(*args, **kwargs)
     return decorated_function
 
