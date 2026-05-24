@@ -41,7 +41,7 @@ def register():
         # Check if user already exists
         existing_user = User.query.filter_by(username=username).first()
         if existing_user:
-            return "Username already taken!"
+            return "User already exists. Please Login"
         
         # Create new user
         new_user = User(username=username)
@@ -90,9 +90,9 @@ def login():
             active_users.add(user.username)
 
             next_url =  request.form.get("next") or request.args.get("next")
-            if next_url and next_url.startswith("/"):
+            if next_url and next_url.startswith("/") and next_url not in ["/login", "/register"]:
                 return redirect(next_url, code=303)
-            return redirect(next_url or url_for("web.home"), code=303)
+            return redirect(url_for("web.home"), code=303)
             
         else:
             return render_template("invalid_credentials.html")

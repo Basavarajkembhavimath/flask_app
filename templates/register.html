@@ -93,7 +93,7 @@
 
     <div class="card">
         <h2>Create Your Account</h2>
-        <form method="POST" action="/register">
+        <form method="POST" action="{{ url_for('web.register') }}">
             <div class="form-group">
                 <label for="username">Username</label>
                 <input type="text" name="username" id="username" placeholder="Creat a username" required>
