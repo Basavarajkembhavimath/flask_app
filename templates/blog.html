@@ -102,7 +102,7 @@
 <body>
     <header>
         <!-- Back button on top-left -->
-        <button class="back-btn" onclick="history.back()">← Back</button>
+        <a href="{{ url_for('web.home') }}" class="back-btn">← Back</a>
         <div style="flex:1; text-align:center;">
             <h1>My Blog</h1>
             <p>Sharing thoughts, ideas, and experiences</p>

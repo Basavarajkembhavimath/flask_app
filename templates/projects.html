@@ -110,8 +110,8 @@
 </head>
 <body>
     <header>
-        <!-- Back button on top-left -->
-        <button class="back-btn" onclick="history.back()">← Back</button>
+        <!-- Back button on top-left --> 
+        <a href="{{ url_for('web.home') }}" class="back-btn">← Back</a>
         <div style="flex:1; text-align:center;">
             <h1>My Projects</h1>
             <p>A showcase of my work and creativity</p>

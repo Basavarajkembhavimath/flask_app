@@ -1,4 +1,4 @@
-from flask import Flask, Blueprint, render_template, request, redirect, url_for, session
+from flask import Flask, Blueprint, jsonify, render_template, request, redirect, url_for, session
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 from models import db, User, Feedback 
@@ -89,22 +89,15 @@ def login():
             # Track active user
             active_users.add(user.username)
 
-            next_url =  request.args.get("next")
+            next_url =  request.form.get("next") or request.args.get("next")
             if next_url and next_url.startswith("/"):
                 return redirect(next_url, code=303)
-            return redirect(url_for("web.home"), code=303)
+            return redirect(next_url or url_for("web.home"), code=303)
             
         else:
             return "Invalid credentials, try again!"
 
     return render_template("login.html", next=request.args.get("next"))
-
-# # Logout
-# @web.route("/logout")
-# def logout():
-#     session.pop("logged_in", None)
-#     session.clear()
-#     return redirect(url_for("web.home"))
 
 # Logout
 @web.route("/logout")
@@ -165,16 +158,22 @@ def api_get_feedbacks():
 @web.route("/projects")
 @login_required
 def projects():
+    if "username" not in session:
+        return redirect(url_for("web.login", next= request.path))
     return render_template("projects.html")
 
 @web.route("/resume")
 @login_required
 def resume():
+    if "username" not in session:
+        return redirect(url_for("web.login", next= request.path))
     return render_template("resume.html")
 
 @web.route("/blog")
 @login_required
 def blog():
+    if "username" not in session:
+        return redirect(url_for("web.login", next= request.path))
     posts = [
         {"title": "My First Blog Post", "content":"This is a demo post."},
         {"title": "Learning Flask", "content":"Flask makes web webs easy!"}

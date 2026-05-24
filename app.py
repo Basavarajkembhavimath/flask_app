@@ -1,5 +1,5 @@
 from flask import Flask
-from models import db, User
+from models import User, db
 from api import api
 from web import web # my existing html routes
 from datetime import timedelta
