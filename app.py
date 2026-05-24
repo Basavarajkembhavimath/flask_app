@@ -13,7 +13,7 @@ def create_app():
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
     # Session expires when browser closes
-    app.config["SESSION_PWEMANENT"] = False
+    app.config["SESSION_PERMANENT"] = False
     app.config["PERMANENT_SESSION_LIFETIME"] = timedelta(minutes = 10)
 
     db.init_app(app)
@@ -21,7 +21,7 @@ def create_app():
     app.register_blueprint(web)
 
     with app.app_context():
-        db.create_all()
+        #db.create_all()
 
          # ✅ Create admin user
         if not User.query.filter_by(username="admin").first():
