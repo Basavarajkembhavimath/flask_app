@@ -95,7 +95,7 @@ def login():
             return redirect(next_url or url_for("web.home"), code=303)
             
         else:
-            return "Invalid credentials, try again!"
+            return render_template("invalid_credentials.html")
 
     return render_template("login.html", next=request.args.get("next"))
 
